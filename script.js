@@ -39,6 +39,12 @@ function createTask(text, done) {
   const buttonDiv = document.createElement("div");
   buttonDiv.className = "task-buttons";
 
+  const editBtn = document.createElement("button");
+  editBtn.textContent = "✏️";
+  editBtn.onclick = () => {
+    editTask(span);
+  };
+
   const doneBtn = document.createElement("button");
   doneBtn.textContent = "✔️";
   doneBtn.onclick = () => {
@@ -57,6 +63,7 @@ function createTask(text, done) {
     applyFilter();
   };
 
+  buttonDiv.appendChild(editBtn);
   buttonDiv.appendChild(doneBtn);
   buttonDiv.appendChild(deleteBtn);
 
@@ -64,6 +71,19 @@ function createTask(text, done) {
   li.appendChild(buttonDiv);
 
   document.getElementById("taskList").appendChild(li);
+}
+
+function editTask(span) {
+  const newText = prompt("Modifier la tâche :", span.textContent);
+
+  if (newText === null) return;
+
+  const trimmedText = newText.trim();
+
+  if (trimmedText === "") return;
+
+  span.textContent = trimmedText;
+  saveTasks();
 }
 
 function saveTasks() {
