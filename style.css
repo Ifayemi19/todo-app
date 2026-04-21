@@ -12,6 +12,13 @@ body {
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    position: relative;
+  }
+  
+  #darkModeToggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
   }
   
   h1 {
@@ -100,4 +107,39 @@ body {
     text-decoration: line-through;
     color: gray;
     opacity: 0.6;
+  }
+  
+  body.dark {
+    background: #1e1e2f;
+  }
+  
+  body.dark .container {
+    background-color: #2c2c3e;
+    color: white;
+  }
+  
+  body.dark h1 {
+    color: white;
+  }
+  
+  body.dark #taskCounter {
+    color: #ccc;
+  }
+  
+  body.dark li {
+    background-color: #3a3a50;
+  }
+  
+  body.dark input {
+    background-color: #2c2c3e;
+    color: white;
+    border: 1px solid #555;
+  }
+  
+  body.dark button {
+    background-color: #444;
+  }
+  
+  body.dark button:hover {
+    background-color: #666;
   }

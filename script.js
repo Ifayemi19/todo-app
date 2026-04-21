@@ -126,6 +126,24 @@ function applyFilter() {
   });
 }
 
+const toggleBtn = document.getElementById("darkModeToggle");
+
+toggleBtn.onclick = () => {
+  document.body.classList.toggle("dark");
+
+  const isDark = document.body.classList.contains("dark");
+  localStorage.setItem("darkMode", isDark);
+};
+
+function loadDarkMode() {
+  const isDark = localStorage.getItem("darkMode") === "true";
+
+  if (isDark) {
+    document.body.classList.add("dark");
+  }
+}
+
 loadTasks();
 updateCounter();
 applyFilter();
+loadDarkMode();
