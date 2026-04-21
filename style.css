@@ -14,7 +14,11 @@ body {
     border-radius: 20px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     position: relative;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .container:hover {
+    transform: translateY(-2px);
   }
   
   #darkModeToggle {
@@ -56,8 +60,13 @@ body {
     border: 1px solid #ccc;
     border-radius: 10px;
     font-size: 16px;
-    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
     box-sizing: border-box;
+  }
+  
+  input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(74, 105, 189, 0.2);
   }
   
   #taskInput {
@@ -76,11 +85,16 @@ body {
     border-radius: 10px;
     cursor: pointer;
     font-size: 15px;
-    transition: 0.3s ease;
+    transition: transform 0.2s ease, background-color 0.3s ease, opacity 0.3s ease;
   }
   
   button:hover {
     background-color: #1e3799;
+    transform: scale(1.05);
+  }
+  
+  button:active {
+    transform: scale(0.97);
   }
   
   ul {
@@ -98,8 +112,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
     gap: 12px;
+    animation: fadeInUp 0.35s ease;
   }
   
   .task-left {
@@ -121,12 +136,18 @@ body {
   .task-text span {
     cursor: pointer;
     word-break: break-word;
+    transition: color 0.3s ease, opacity 0.3s ease, transform 0.2s ease;
+  }
+  
+  .task-text span:hover {
+    transform: translateX(2px);
   }
   
   .task-date {
     font-size: 13px;
     color: #666;
     line-height: 1.2;
+    transition: color 0.3s ease;
   }
   
   .task-buttons {
@@ -140,6 +161,15 @@ body {
     text-decoration: line-through;
     color: gray;
     opacity: 0.6;
+  }
+  
+  .removing {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  
+  .bounce {
+    animation: bounceDone 0.35s ease;
   }
   
   /* MODE SOMBRE */
@@ -166,6 +196,10 @@ body {
     background-color: #111827;
     color: white;
     border: 1px solid #4b5563;
+  }
+  
+  body.dark input:focus {
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
   }
   
   body.dark li {
@@ -261,5 +295,33 @@ body {
   
     #darkModeToggle {
       width: 100%;
+    }
+  }
+  
+  /* ANIMATIONS */
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes bounceDone {
+    0% {
+      transform: scale(1);
+    }
+    35% {
+      transform: scale(1.08);
+    }
+    70% {
+      transform: scale(0.98);
+    }
+    100% {
+      transform: scale(1);
     }
   }

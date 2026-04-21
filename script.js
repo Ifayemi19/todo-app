@@ -36,6 +36,8 @@ function createTask(text, done, date = "") {
 
   span.onclick = () => {
     span.classList.toggle("done");
+    span.classList.add("bounce");
+    setTimeout(() => span.classList.remove("bounce"), 350);
     saveTasks();
     updateCounter();
     applyFilter();
@@ -43,12 +45,7 @@ function createTask(text, done, date = "") {
 
   const dateElement = document.createElement("div");
   dateElement.className = "task-date";
-
-  if (date) {
-    dateElement.textContent = `📅 ${date}`;
-  } else {
-    dateElement.textContent = "";
-  }
+  dateElement.textContent = date ? `📅 ${date}` : "";
 
   textBlock.appendChild(span);
   textBlock.appendChild(dateElement);
@@ -67,6 +64,8 @@ function createTask(text, done, date = "") {
   doneBtn.textContent = "✔️";
   doneBtn.onclick = () => {
     span.classList.toggle("done");
+    span.classList.add("bounce");
+    setTimeout(() => span.classList.remove("bounce"), 350);
     saveTasks();
     updateCounter();
     applyFilter();
@@ -75,10 +74,13 @@ function createTask(text, done, date = "") {
   const deleteBtn = document.createElement("button");
   deleteBtn.textContent = "❌";
   deleteBtn.onclick = () => {
-    li.remove();
-    saveTasks();
-    updateCounter();
-    applyFilter();
+    li.classList.add("removing");
+    setTimeout(() => {
+      li.remove();
+      saveTasks();
+      updateCounter();
+      applyFilter();
+    }, 300);
   };
 
   buttonDiv.appendChild(editBtn);
