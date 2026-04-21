@@ -6,6 +6,7 @@ function addTask() {
   
     createTask(task, false);
     saveTasks();
+    updateCounter();
   
     input.value = "";
   }
@@ -23,6 +24,7 @@ function addTask() {
     span.onclick = () => {
       span.classList.toggle("done");
       saveTasks();
+      updateCounter();
     };
   
     const doneBtn = document.createElement("button");
@@ -30,6 +32,7 @@ function addTask() {
     doneBtn.onclick = () => {
       span.classList.toggle("done");
       saveTasks();
+      updateCounter();
     };
   
     const deleteBtn = document.createElement("button");
@@ -37,6 +40,7 @@ function addTask() {
     deleteBtn.onclick = () => {
       li.remove();
       saveTasks();
+      updateCounter();
     };
   
     li.appendChild(span);
@@ -65,4 +69,24 @@ function addTask() {
     tasks.forEach(task => createTask(task.text, task.done));
   }
   
+  function updateCounter() {
+    const tasks = document.querySelectorAll("#taskList li span");
+    let remaining = 0;
+  
+    tasks.forEach(task => {
+      if (!task.classList.contains("done")) {
+        remaining++;
+      }
+    });
+  
+    const counter = document.getElementById("taskCounter");
+  
+    if (remaining <= 1) {
+      counter.textContent = `${remaining} tâche restante`;
+    } else {
+      counter.textContent = `${remaining} tâches restantes`;
+    }
+  }
+  
   loadTasks();
+  updateCounter();
