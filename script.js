@@ -88,5 +88,22 @@ function addTask() {
     }
   }
   
+  function filterTasks(type) {
+    const tasks = document.querySelectorAll("#taskList li");
+  
+    tasks.forEach(li => {
+      const span = li.querySelector("span");
+      const isDone = span.classList.contains("done");
+  
+      if (type === "all") {
+        li.style.display = "flex";
+      } else if (type === "todo") {
+        li.style.display = isDone ? "none" : "flex";
+      } else if (type === "done") {
+        li.style.display = isDone ? "flex" : "none";
+      }
+    });
+  }
+  
   loadTasks();
   updateCounter();
