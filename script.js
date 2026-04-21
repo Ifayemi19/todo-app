@@ -41,9 +41,14 @@ function createTask(text, done, date = "") {
     applyFilter();
   };
 
-  const dateElement = document.createElement("small");
+  const dateElement = document.createElement("div");
   dateElement.className = "task-date";
-  dateElement.textContent = date ? `📅 ${date}` : "";
+
+  if (date) {
+    dateElement.textContent = `📅 ${date}`;
+  } else {
+    dateElement.textContent = "";
+  }
 
   textBlock.appendChild(span);
   textBlock.appendChild(dateElement);
@@ -99,7 +104,8 @@ function editTask(span, dateElement) {
   const newDate = prompt("Modifier la date (YYYY-MM-DD) :", currentDate);
 
   if (newDate !== null) {
-    dateElement.textContent = newDate.trim() ? `📅 ${newDate.trim()}` : "";
+    const trimmedDate = newDate.trim();
+    dateElement.textContent = trimmedDate ? `📅 ${trimmedDate}` : "";
   }
 
   saveTasks();

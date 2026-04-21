@@ -40,6 +40,7 @@ body {
     justify-content: center;
     gap: 10px;
     margin-bottom: 20px;
+    flex-wrap: wrap;
   }
   
   .input-area {
@@ -102,7 +103,7 @@ body {
   
   .task-left {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 10px;
     flex: 1;
   }
@@ -110,21 +111,24 @@ body {
   .task-text {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 4px;
+  }
+  
+  .task-text span {
+    cursor: pointer;
   }
   
   .task-date {
     font-size: 13px;
     color: #666;
+    line-height: 1.2;
   }
   
   .task-buttons {
     display: flex;
     gap: 8px;
-  }
-  
-  span {
-    cursor: pointer;
+    flex-shrink: 0;
   }
   
   .done {
@@ -132,6 +136,8 @@ body {
     color: gray;
     opacity: 0.6;
   }
+  
+  /* MODE SOMBRE */
   
   body.dark {
     background: linear-gradient(to right, #141e30, #243b55);
