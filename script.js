@@ -17,6 +17,9 @@ function addTask() {
 function createTask(text, done) {
   const li = document.createElement("li");
 
+  const leftDiv = document.createElement("div");
+  leftDiv.className = "task-left";
+
   const span = document.createElement("span");
   span.textContent = text;
 
@@ -30,6 +33,11 @@ function createTask(text, done) {
     updateCounter();
     applyFilter();
   };
+
+  leftDiv.appendChild(span);
+
+  const buttonDiv = document.createElement("div");
+  buttonDiv.className = "task-buttons";
 
   const doneBtn = document.createElement("button");
   doneBtn.textContent = "✔️";
@@ -49,9 +57,11 @@ function createTask(text, done) {
     applyFilter();
   };
 
-  li.appendChild(span);
-  li.appendChild(doneBtn);
-  li.appendChild(deleteBtn);
+  buttonDiv.appendChild(doneBtn);
+  buttonDiv.appendChild(deleteBtn);
+
+  li.appendChild(leftDiv);
+  li.appendChild(buttonDiv);
 
   document.getElementById("taskList").appendChild(li);
 }

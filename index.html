@@ -6,20 +6,24 @@
 </head>
 <body>
 
-  <h1>Ma Todo List</h1>
+  <div class="container">
+    <h1>Ma Todo List</h1>
 
-  <p id="taskCounter">0 tâche restante</p>
+    <p id="taskCounter">0 tâche restante</p>
 
-  <div id="filters">
-    <button onclick="filterTasks('all')">Tout</button>
-    <button onclick="filterTasks('todo')">À faire</button>
-    <button onclick="filterTasks('done')">Terminées</button>
+    <div id="filters">
+      <button onclick="filterTasks('all')">Tout</button>
+      <button onclick="filterTasks('todo')">À faire</button>
+      <button onclick="filterTasks('done')">Terminées</button>
+    </div>
+
+    <div class="input-area">
+      <input type="text" id="taskInput" placeholder="Ajouter une tâche">
+      <button onclick="addTask()">Ajouter</button>
+    </div>
+
+    <ul id="taskList"></ul>
   </div>
-
-  <input type="text" id="taskInput" placeholder="Ajouter une tâche">
-  <button onclick="addTask()">Ajouter</button>
-
-  <ul id="taskList"></ul>
 
   <script src="script.js"></script>
 

@@ -1,54 +1,95 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    padding: 40px;
+    background: linear-gradient(to right, #e0eafc, #cfdef3);
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: 60px auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   }
   
   h1 {
-    color: #333;
+    color: #222;
+    text-align: center;
+    margin-bottom: 10px;
   }
   
   #taskCounter {
     color: #666;
     font-size: 18px;
+    text-align: center;
     margin-bottom: 20px;
   }
   
   #filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .input-area {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
     margin-bottom: 20px;
   }
   
   input {
-    padding: 10px;
-    width: 250px;
+    padding: 12px;
+    width: 70%;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 10px;
+    font-size: 16px;
   }
   
   button {
     padding: 10px 15px;
-    margin-left: 5px;
     border: none;
-    background-color: #333;
+    background-color: #4a69bd;
     color: white;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
+    font-size: 15px;
+    transition: 0.3s ease;
   }
   
   button:hover {
-    background-color: #555;
+    background-color: #1e3799;
   }
   
   ul {
-    padding-left: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
   }
   
   li {
-    margin-top: 10px;
+    background-color: #f8f9fa;
+    margin-top: 12px;
+    padding: 12px 15px;
+    border-radius: 12px;
     font-size: 18px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+  }
+  
+  .task-left {
+    display: flex;
+    align-items: center;
     gap: 10px;
+  }
+  
+  .task-buttons {
+    display: flex;
+    gap: 8px;
   }
   
   span {
