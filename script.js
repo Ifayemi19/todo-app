@@ -5,7 +5,11 @@ function addTask() {
     if (task === "") return;
   
     const li = document.createElement("li");
-    li.textContent = task;
+  
+    li.innerHTML = `
+      ${task}
+      <button onclick="this.parentElement.remove()">❌</button>
+    `;
   
     document.getElementById("taskList").appendChild(li);
   
