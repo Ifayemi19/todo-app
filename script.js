@@ -7,11 +7,15 @@ function addTask() {
     const li = document.createElement("li");
   
     li.innerHTML = `
-      ${task}
+      <span onclick="toggleDone(this)">${task}</span>
       <button onclick="this.parentElement.remove()">❌</button>
     `;
   
     document.getElementById("taskList").appendChild(li);
   
     input.value = "";
+  }
+  
+  function toggleDone(element) {
+    element.classList.toggle("done");
   }

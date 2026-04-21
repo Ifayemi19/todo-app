@@ -32,4 +32,13 @@ body {
   li {
     margin-top: 10px;
     font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .done {
+    text-decoration: line-through;
+    color: gray;
+    opacity: 0.6;
   }
