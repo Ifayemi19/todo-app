@@ -3,6 +3,7 @@ body {
     background: linear-gradient(to right, #e0eafc, #cfdef3);
     margin: 0;
     padding: 0;
+    transition: background 0.3s ease, color 0.3s ease;
   }
   
   .container {
@@ -13,12 +14,12 @@ body {
     border-radius: 20px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     position: relative;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
   
   #darkModeToggle {
-    position: absolute;
-    top: 20px;
-    right: 20px;
+    display: block;
+    margin-bottom: 20px;
   }
   
   h1 {
@@ -54,6 +55,7 @@ body {
     border: 1px solid #ccc;
     border-radius: 10px;
     font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
   }
   
   button {
@@ -86,6 +88,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    transition: background-color 0.3s ease;
   }
   
   .task-left {
@@ -109,12 +112,15 @@ body {
     opacity: 0.6;
   }
   
+  /* MODE SOMBRE */
+  
   body.dark {
-    background: #1e1e2f;
+    background: linear-gradient(to right, #141e30, #243b55);
+    color: white;
   }
   
   body.dark .container {
-    background-color: #2c2c3e;
+    background-color: #1f2937;
     color: white;
   }
   
@@ -123,23 +129,27 @@ body {
   }
   
   body.dark #taskCounter {
-    color: #ccc;
-  }
-  
-  body.dark li {
-    background-color: #3a3a50;
+    color: #d1d5db;
   }
   
   body.dark input {
-    background-color: #2c2c3e;
+    background-color: #111827;
     color: white;
-    border: 1px solid #555;
+    border: 1px solid #4b5563;
+  }
+  
+  body.dark li {
+    background-color: #374151;
   }
   
   body.dark button {
-    background-color: #444;
+    background-color: #2563eb;
   }
   
   body.dark button:hover {
-    background-color: #666;
+    background-color: #1d4ed8;
+  }
+  
+  body.dark .done {
+    color: #9ca3af;
   }

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
   <title>Todo App</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -13,23 +14,28 @@
 
     <h1>Ma Todo List</h1>
 
+    <!-- Compteur -->
     <p id="taskCounter">0 tâche restante</p>
 
+    <!-- Filtres -->
     <div id="filters">
       <button onclick="filterTasks('all')">Tout</button>
       <button onclick="filterTasks('todo')">À faire</button>
       <button onclick="filterTasks('done')">Terminées</button>
     </div>
 
+    <!-- Zone d'ajout -->
     <div class="input-area">
       <input type="text" id="taskInput" placeholder="Ajouter une tâche">
       <button onclick="addTask()">Ajouter</button>
     </div>
 
+    <!-- Liste des tâches -->
     <ul id="taskList"></ul>
 
   </div>
 
+  <!-- Script -->
   <script src="script.js"></script>
 
 </body>

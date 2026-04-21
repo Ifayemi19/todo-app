@@ -126,14 +126,24 @@ function applyFilter() {
   });
 }
 
-const toggleBtn = document.getElementById("darkModeToggle");
+function updateDarkModeButton() {
+  const toggleBtn = document.getElementById("darkModeToggle");
 
-toggleBtn.onclick = () => {
+  if (document.body.classList.contains("dark")) {
+    toggleBtn.textContent = "☀️ Mode clair";
+  } else {
+    toggleBtn.textContent = "🌙 Mode sombre";
+  }
+}
+
+function toggleDarkMode() {
   document.body.classList.toggle("dark");
 
   const isDark = document.body.classList.contains("dark");
   localStorage.setItem("darkMode", isDark);
-};
+
+  updateDarkModeButton();
+}
 
 function loadDarkMode() {
   const isDark = localStorage.getItem("darkMode") === "true";
@@ -141,9 +151,13 @@ function loadDarkMode() {
   if (isDark) {
     document.body.classList.add("dark");
   }
+
+  updateDarkModeButton();
 }
 
 loadTasks();
 updateCounter();
 applyFilter();
 loadDarkMode();
+
+document.getElementById("darkModeToggle").addEventListener("click", toggleDarkMode);
