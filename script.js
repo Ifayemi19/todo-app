@@ -1,5 +1,35 @@
 let currentFilter = "all";
 
+function showToast(message, type = "info") {
+  const box = document.getElementById("notificationBox");
+  const toast = document.createElement("div");
+
+  toast.className = `toast ${type}`;
+  toast.textContent = message;
+
+  box.appendChild(toast);
+
+  setTimeout(() => {
+    toast.remove();
+  }, 3000);
+}
+
+function sendBrowserNotification(title, body) {
+  if (!("Notification" in window)) return;
+
+  if (Notification.permission === "granted") {
+    new Notification(title, { body });
+  }
+}
+
+function requestNotificationPermission() {
+  if (!("Notification" in window)) return;
+
+  if (Notification.permission === "default") {
+    Notification.requestPermission();
+  }
+}
+
 function addTask() {
   const input = document.getElementById("taskInput");
   const dateInput = document.getElementById("taskDate");
@@ -7,12 +37,18 @@ function addTask() {
   const task = input.value.trim();
   const date = dateInput.value;
 
-  if (task === "") return;
+  if (task === "") {
+    showToast("Entre une tâche avant d'ajouter.", "warning");
+    return;
+  }
 
   createTask(task, false, date);
   saveTasks();
   updateCounter();
   applyFilter();
+
+  showToast("Tâche ajoutée avec succès.", "success");
+  sendBrowserNotification("Nouvelle tâche", task);
 
   input.value = "";
   dateInput.value = "";
@@ -38,6 +74,13 @@ function createTask(text, done, date = "") {
     span.classList.toggle("done");
     span.classList.add("bounce");
     setTimeout(() => span.classList.remove("bounce"), 350);
+
+    const isDone = span.classList.contains("done");
+    showToast(
+      isDone ? "Tâche marquée comme terminée." : "Tâche remise en cours.",
+      "info"
+    );
+
     saveTasks();
     updateCounter();
     applyFilter();
@@ -66,6 +109,13 @@ function createTask(text, done, date = "") {
     span.classList.toggle("done");
     span.classList.add("bounce");
     setTimeout(() => span.classList.remove("bounce"), 350);
+
+    const isDone = span.classList.contains("done");
+    showToast(
+      isDone ? "Tâche marquée comme terminée." : "Tâche remise en cours.",
+      "info"
+    );
+
     saveTasks();
     updateCounter();
     applyFilter();
@@ -75,11 +125,13 @@ function createTask(text, done, date = "") {
   deleteBtn.textContent = "❌";
   deleteBtn.onclick = () => {
     li.classList.add("removing");
+
     setTimeout(() => {
       li.remove();
       saveTasks();
       updateCounter();
       applyFilter();
+      showToast("Tâche supprimée.", "error");
     }, 300);
   };
 
@@ -98,7 +150,10 @@ function editTask(span, dateElement) {
   if (newText === null) return;
 
   const trimmedText = newText.trim();
-  if (trimmedText === "") return;
+  if (trimmedText === "") {
+    showToast("Le texte ne peut pas être vide.", "warning");
+    return;
+  }
 
   span.textContent = trimmedText;
 
@@ -111,6 +166,7 @@ function editTask(span, dateElement) {
   }
 
   saveTasks();
+  showToast("Tâche modifiée.", "success");
 }
 
 function saveTasks() {
@@ -207,5 +263,6 @@ loadTasks();
 updateCounter();
 applyFilter();
 loadDarkMode();
+requestNotificationPermission();
 
 document.getElementById("darkModeToggle").addEventListener("click", toggleDarkMode);
