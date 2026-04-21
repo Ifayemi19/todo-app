@@ -2,23 +2,30 @@ let currentFilter = "all";
 
 function addTask() {
   const input = document.getElementById("taskInput");
+  const dateInput = document.getElementById("taskDate");
+
   const task = input.value.trim();
+  const date = dateInput.value;
 
   if (task === "") return;
 
-  createTask(task, false);
+  createTask(task, false, date);
   saveTasks();
   updateCounter();
   applyFilter();
 
   input.value = "";
+  dateInput.value = "";
 }
 
-function createTask(text, done) {
+function createTask(text, done, date = "") {
   const li = document.createElement("li");
 
   const leftDiv = document.createElement("div");
   leftDiv.className = "task-left";
+
+  const textBlock = document.createElement("div");
+  textBlock.className = "task-text";
 
   const span = document.createElement("span");
   span.textContent = text;
@@ -34,7 +41,13 @@ function createTask(text, done) {
     applyFilter();
   };
 
-  leftDiv.appendChild(span);
+  const dateElement = document.createElement("small");
+  dateElement.className = "task-date";
+  dateElement.textContent = date ? `📅 ${date}` : "";
+
+  textBlock.appendChild(span);
+  textBlock.appendChild(dateElement);
+  leftDiv.appendChild(textBlock);
 
   const buttonDiv = document.createElement("div");
   buttonDiv.className = "task-buttons";
@@ -42,7 +55,7 @@ function createTask(text, done) {
   const editBtn = document.createElement("button");
   editBtn.textContent = "✏️";
   editBtn.onclick = () => {
-    editTask(span);
+    editTask(span, dateElement);
   };
 
   const doneBtn = document.createElement("button");
@@ -73,16 +86,22 @@ function createTask(text, done) {
   document.getElementById("taskList").appendChild(li);
 }
 
-function editTask(span) {
+function editTask(span, dateElement) {
   const newText = prompt("Modifier la tâche :", span.textContent);
-
   if (newText === null) return;
 
   const trimmedText = newText.trim();
-
   if (trimmedText === "") return;
 
   span.textContent = trimmedText;
+
+  const currentDate = dateElement.textContent.replace("📅 ", "");
+  const newDate = prompt("Modifier la date (YYYY-MM-DD) :", currentDate);
+
+  if (newDate !== null) {
+    dateElement.textContent = newDate.trim() ? `📅 ${newDate.trim()}` : "";
+  }
+
   saveTasks();
 }
 
@@ -91,7 +110,8 @@ function saveTasks() {
   document.querySelectorAll("#taskList li").forEach(li => {
     const text = li.querySelector("span").textContent;
     const done = li.querySelector("span").classList.contains("done");
-    tasks.push({ text, done });
+    const dateText = li.querySelector(".task-date").textContent.replace("📅 ", "");
+    tasks.push({ text, done, date: dateText });
   });
 
   localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -102,7 +122,7 @@ function loadTasks() {
   if (!data) return;
 
   const tasks = JSON.parse(data);
-  tasks.forEach(task => createTask(task.text, task.done));
+  tasks.forEach(task => createTask(task.text, task.done, task.date));
 }
 
 function updateCounter() {

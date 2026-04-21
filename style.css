@@ -7,7 +7,7 @@ body {
   }
   
   .container {
-    max-width: 600px;
+    max-width: 700px;
     margin: 60px auto;
     background-color: white;
     padding: 30px;
@@ -47,15 +47,23 @@ body {
     justify-content: center;
     gap: 10px;
     margin-bottom: 20px;
+    flex-wrap: wrap;
   }
   
   input {
     padding: 12px;
-    width: 70%;
     border: 1px solid #ccc;
     border-radius: 10px;
     font-size: 16px;
     transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+  }
+  
+  #taskInput {
+    width: 300px;
+  }
+  
+  #taskDate {
+    width: 170px;
   }
   
   button {
@@ -89,12 +97,25 @@ body {
     align-items: center;
     justify-content: space-between;
     transition: background-color 0.3s ease;
+    gap: 12px;
   }
   
   .task-left {
     display: flex;
     align-items: center;
     gap: 10px;
+    flex: 1;
+  }
+  
+  .task-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .task-date {
+    font-size: 13px;
+    color: #666;
   }
   
   .task-buttons {
@@ -111,8 +132,6 @@ body {
     color: gray;
     opacity: 0.6;
   }
-  
-  /* MODE SOMBRE */
   
   body.dark {
     background: linear-gradient(to right, #141e30, #243b55);
@@ -152,4 +171,8 @@ body {
   
   body.dark .done {
     color: #9ca3af;
+  }
+  
+  body.dark .task-date {
+    color: #cbd5e1;
   }
